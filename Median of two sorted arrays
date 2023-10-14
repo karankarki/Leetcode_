@@ -1,0 +1,117 @@
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        
+        boolean flag = true;
+        int i = 0;
+        int j = 0;
+        int ind = 0;
+        int len = nums1.length + nums2.length ;
+//        System.out.println(len);
+        int new_arr[] = new int[len];
+        if(nums1.length == 0){
+            if(nums2.length==1){
+                return nums2[0];
+            }
+           else if(nums2.length % 2==0 ){
+
+
+               double a = nums2[nums2.length/2];
+               double b = nums2[nums2.length/2 -1];
+//               System.out.println(a + " "+ b);
+//               System.out.println(new_arr.length);
+               return (a+b)/2;
+
+           }
+           else{
+               double ans = nums2[nums2.length/2];
+               return ans;
+           }
+
+        }
+        else if(nums2.length == 0){
+             if(nums1.length==1){
+                return nums1[0];
+            }
+            
+             else if(nums1.length % 2 == 0) {
+
+
+                    double a = nums1[nums1.length / 2];
+                    double b = nums1[nums1.length / 2 - 1];
+//               System.out.println(a + " "+ b);
+//               System.out.println(new_arr.length);
+                    return (a + b) / 2;
+
+                }
+             else {
+                    double ans = nums1[nums1.length / 2];
+                    return ans;
+                }
+            
+        }
+        else{
+
+
+            while(flag){
+                if(nums1[i]>nums2[j]){
+                    new_arr[ind] = nums2[j];
+                    ind++;
+                    j++;
+                }
+
+                else if(nums1[i]<nums2[j]){
+                    new_arr[ind] = nums1[i];
+                    i++;
+                    ind++;
+                }
+
+                else if(nums1[i]==nums2[j]){
+                    new_arr[ind] = nums1[i];
+                    ind++;
+                    i++;
+                    new_arr[ind] = nums2[j];
+                    j++;
+                    ind++;
+
+
+                }
+
+                if(nums1.length ==i || nums2.length ==j){
+
+                    for(int k = j;k<nums2.length ;k++){
+                        new_arr[ind] = nums2[k];
+                        j++;
+                        ind++;
+                    }
+
+                    for(int l = i;l<nums1.length ;l++){
+                        new_arr[ind] = nums1[i];
+                        i++;
+                        ind++;
+                    }
+
+                    flag = false;
+                }
+
+            }
+        }
+
+        // System.out.println(new_arr.length);
+
+        if(new_arr.length%2==0){
+            double a = new_arr[new_arr.length/2];
+            double b = new_arr[new_arr.length/2 -1];
+            // System.out.println(a + " "+ b);
+
+            // System.out.println(new_arr.length);
+            return (a+b)/2;
+        }
+        else{
+//            System.out.println("i am here");
+            // System.out.println(new_arr.length);
+            return new_arr[new_arr.length/2];
+        }
+
+
+    }
+}
