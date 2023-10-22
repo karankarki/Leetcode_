@@ -1,0 +1,27 @@
+import java.util.*;
+class Solution {
+    public int thirdMax(int[] nums) {
+        
+     if (nums.length <= 2) {
+            Arrays.sort(nums);
+            return nums[nums.length - 1];
+        }
+
+        Arrays.sort(nums);
+        
+        int count = 0;
+        int max = nums[nums.length - 1];
+        
+        for (int i = nums.length - 2; i >= 0; i--) {
+            if (nums[i] != max) {
+                count++;
+                max = nums[i];
+            }
+            if (count == 2) {
+                return max;
+            }
+        }
+        
+        return nums[nums.length - 1];
+    }
+}
