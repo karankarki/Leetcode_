@@ -1,0 +1,65 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+
+    public static int find_len( ListNode head){
+
+        ListNode temp = head;
+        int len = 0;
+        while(temp!=null){
+            temp = temp.next;
+            len++;
+        }
+
+        return len;
+
+    }
+
+
+
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        
+        
+        int len = find_len(head) - n;//hence we got the index to remove from the frist of the linked list
+
+ListNode temp = head;
+    if(len==0){
+        return head.next;
+    }
+
+
+       if(head==null){
+            return null;
+        }
+        if(head.next ==null && n==1){
+            return null;
+        }
+
+        
+        else{
+            
+            int ind = 1;
+            while(ind<=len-1){
+                temp = temp.next;
+                ind++;
+            }
+
+        temp.next = temp.next.next;
+
+
+        }
+
+
+
+return head;
+        
+    }
+}
