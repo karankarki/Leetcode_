@@ -1,0 +1,43 @@
+class Solution {
+    public int firstMissingPositive(int[] nums) {
+        
+        Arrays.sort(nums);
+        if(nums.length ==1){
+            if(nums[0]>1 || nums[0]<1){
+                return 1;
+            }
+            return 2;
+        }
+      
+        int ind = 0;
+        while(ind<nums.length &&  nums[ind]<=0){
+            ind++;
+        }
+        if(ind>=nums.length){
+            return 1;
+        }
+
+        int num = 1;
+
+        
+       
+       while(ind<nums.length){
+           if(nums[ind]!=num){
+               return num;
+           }
+               ind++;
+               num++;
+           if(ind<nums.length && nums[ind-1]==nums[ind]){
+               num--;
+           }
+           
+           
+           
+       }
+
+        return num;
+
+
+
+    }
+}
