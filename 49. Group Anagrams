@@ -1,0 +1,59 @@
+class Solution {
+
+    public static String conv(char[] arr){
+        String ans = "";
+        for(int i = 0;i<arr.length;i++){
+            ans+=arr[i];
+        }
+        return ans;
+    }
+
+
+    public List<List<String>> groupAnagrams(String[] strs) {
+
+
+        String str[] = new String[strs.length];
+        for(int i = 0;i<strs.length;i++){
+        char[] first = strs[i].toCharArray();
+        Arrays.sort(first);
+        str[i] = conv(first);
+        
+        }
+
+
+
+
+ 
+        List<List<String>> main_list= new ArrayList<List<String>>(); 
+       
+        for(int i = 0;i<strs.length ;i++){
+            if(strs[i]==""){
+                continue;
+            }
+
+        List<String> l1 = new ArrayList<>();
+        l1.add(strs[i]);
+        strs[i]="";
+
+        for(int j = i+1;j<strs.length;j++){
+            if(strs[j]==""){
+                continue;
+            }
+
+            if(str[i].equals(str[j])){
+                l1.add(strs[j]);
+                strs[j] = "";
+            }
+
+
+
+        }
+
+        main_list.add(l1);
+           
+        }
+        return main_list;
+
+
+    }
+}
