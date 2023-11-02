@@ -1,0 +1,99 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+
+      public int getListSize(ListNode head) {
+        int result = 0;
+        for (ListNode current = head; current != null; current = current.next) {
+            result++;
+        }
+        return result;
+    }
+
+    public ListNode rotateRight(ListNode head, int k) {
+//         ArrayList<Integer> l1 = new ArrayList<>();
+//         if(head==null){
+//             return head;
+//         }
+//         ListNode temp = head;
+//         int len = 0;
+//         while(temp!=null){
+//             l1.add(temp.val);
+//             temp = temp.next;
+//             len+=1;
+//         }
+//         if(len==1){
+//             return head;
+//         }
+//         temp = head;
+
+//         while(k>=len){
+//             k = k-len;
+//         }
+//         // len+=1;
+//         int ind = len-k;
+
+//         for(int i = 0;i<len;i++){
+
+//                 if(ind>=len){
+//                     ind = 0;
+//                 }
+//                 temp.val = l1.get(ind);
+//                 temp = temp.next;
+//                 ind++;
+
+
+//         }
+
+// return head;
+
+//Method2 not by me
+        // Return the original list if no rotations are asked for.
+        if (k == 0 || head == null) {
+            return head;
+        }
+
+        // It's possible the list is smaller than k; mod it. No need for redundant rotations.
+        int minRotations = k % getListSize(head);
+
+        // If minRotations is zero, the list is unchanged.
+        if (minRotations == 0) {
+            return head;
+        }
+
+        // Create 2 pointers. Pointer1 at the start of the list, pointer2 minRotations ahead.
+        ListNode pointer1 = head;
+        ListNode pointer2 = head;
+        for (int i = 0; i < minRotations; i++) {
+            pointer2 = pointer2.next;
+        }
+
+        // Move the pointers until pointer2 reaches the end of the list. Pointer1 will be at the node before the new head.
+        while (pointer2.next != null) {
+            pointer1 = pointer1.next;
+            pointer2 = pointer2.next;
+        }
+
+        // Perform the total rotation.
+        pointer2.next = head;
+        head = pointer1.next;
+        pointer1.next = null;
+        return head;
+
+
+
+    }
+}
+
+
+
+
+  
