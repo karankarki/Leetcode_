@@ -1,0 +1,29 @@
+class Solution {
+
+    public static boolean ischeck(int n,HashSet<Integer> set){
+        if(n==1){
+            return true;
+        }
+        int sum = 0;
+        while(n!=0){
+            sum+= (n%10) * (n%10);
+            n/=10;
+        }
+
+        if(!set.add(sum)){
+            return false;
+        }
+        set.add(sum);
+        return ischeck(sum,set);
+
+    }
+
+
+    public boolean isHappy(int n) {
+        
+       HashSet<Integer> s = new HashSet<Integer>();
+        s.add(n);
+       return ischeck(n,s);
+
+    }
+}
