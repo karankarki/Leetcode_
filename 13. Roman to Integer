@@ -13,7 +13,7 @@ class Solution {
                 case 'M': number = 1000; break;
             }
       if (number < prev) {
-            answer -= number;
+            answer =answer- number;
         }
         else {
             answer += number;
