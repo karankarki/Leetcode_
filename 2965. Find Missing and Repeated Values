@@ -1,0 +1,25 @@
+class Solution {
+    public int[] findMissingAndRepeatedValues(int[][] grid) {
+
+
+        int max = grid.length * grid[0].length;
+        max = max *(max + 1);
+        max  = max/2;
+        int rep_ele = 0;
+        HashSet<Integer> h1 = new HashSet<>();
+        int sum = 0;
+
+        for(int i = 0;i<grid.length;i++){
+            for(int j = 0;j<grid[0].length;j++){
+                if(!h1.add(grid[i][j])){
+                    rep_ele = grid[i][j];
+                }
+                sum+=grid[i][j];
+            }
+        }
+
+        int ele_missing = max - (sum - rep_ele);
+        
+        return new int[] {rep_ele,ele_missing};
+    }
+}
